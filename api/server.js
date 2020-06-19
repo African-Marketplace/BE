@@ -8,9 +8,12 @@ server.use(express.json());
 server.use(helmet());
 server.use(cors());
 
+const authRouter = require("../auth/auth-router");
 const productsRouter = require("../products/products-router");
+const restricted = require("../auth/restricted-middleware");
 
-server.use("/api/products", productsRouter);
+server.use("/api/auth", authRouter);
+server.use("/api/products", restricted, productsRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json({ message: "api up and running" });

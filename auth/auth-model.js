@@ -8,9 +8,9 @@ async function addUser(user) {
     .first();
 }
 
-function findBy(username) {
+function findBy(email) {
   return db("users")
-    .where({ username })
+    .where({ email })
     .first();
 }
 

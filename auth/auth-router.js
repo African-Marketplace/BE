@@ -25,16 +25,16 @@ router.post("/register", (req, res) => {
   } else {
     res.status(400).json({
       message:
-        "Please include name, username and password, with password being alphanumeric"
+        "Please include name, email and password, with password being alphanumeric"
     });
   }
 });
 
 router.post("/login", (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   if (isValid(req.body)) {
-    helper.findBy(username).then(user => {
+    helper.findBy(email).then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
         res.status(200).json({ message: "Successfully logged in", token });
@@ -45,7 +45,7 @@ router.post("/login", (req, res) => {
   } else {
     res.status(400).json({
       message:
-        "Please include username and password, with password being alphanumeric"
+        "Please include email and password, with password being alphanumeric"
     });
   }
 });
@@ -53,7 +53,8 @@ router.post("/login", (req, res) => {
 function generateToken(user) {
   const payload = {
     subject: user.id,
-    username: user.username
+    name: user.name,
+    email: user.email
   };
 
   const options = {
@@ -65,6 +66,8 @@ function generateToken(user) {
 
 function isValid(user) {
   return Boolean(
-    user.username && user.password && typeof user.password === "string"
+    user.email && user.password && typeof user.password === "string"
   );
 }
+
+module.exports = router;
