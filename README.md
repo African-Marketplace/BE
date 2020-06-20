@@ -60,16 +60,16 @@ test accounts:
 
 ### Table of Contents
 
-| Type   | Path                          | Notes                                                           |
-| ------ | ----------------------------- | --------------------------------------------------------------- |
-| POST   | /api/auth/register            | registers a new user                                            |
-| POST   | /api/auth/login               | lets user log in                                                |
-| GET    | /api/products/cat             | gets all categories, requires authorization                     |
-| GET    | /api/products/cat/:categoryID | gets products for specified category ID, requires authorization |
-| POST   | /api/products/cat/:categoryID | adds product for specified category ID, requires authorization  |
-| GET    | /api/products/my              | gets products listed by user, requires authorization            |
-| PUT    | /api/products/my/:id          | updates specified user's product, requires authorization        |
-| DELETE | /api/products/my/:id          | removes specified user's product, requires authorization        |
+| Type                                        | Path                          | Notes                                                           |
+| ------------------------------------------- | ----------------------------- | --------------------------------------------------------------- |
+| [POST](#POST-/api/auth/register)            | /api/auth/register            | registers a new user                                            |
+| [POST](#POST-/api/auth/login)               | /api/auth/login               | lets user log in                                                |
+| [GET](#GET-/api/products/cat)               | /api/products/cat             | gets all categories, requires authorization                     |
+| [GET](#GET-/api/products/cat/:categoryID)   | /api/products/cat/:categoryID | gets products for specified category ID, requires authorization |
+| [POST](#POST-/api/products/cat/:categoryID) | /api/products/cat/:categoryID | adds product for specified category ID, requires authorization  |
+| [GET](#GET-/api/products/my)                | /api/products/my              | gets products listed by user, requires authorization            |
+| [PUT](#PUT-/api/products/my/:id)            | /api/products/my/:id          | updates specified user's product, requires authorization        |
+| [DELETE](#DELETE-/api/products/my/:id)      | /api/products/my/:id          | removes specified user's product, requires authorization        |
 
 ## Examples
 
