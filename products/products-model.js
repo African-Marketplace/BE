@@ -1,5 +1,6 @@
 const db = require("../data/db-config");
 
+// GET functions
 function getCategories() {
   return db("categories");
 }
@@ -21,13 +22,29 @@ function getProducts(filter) {
     .where(filter);
 }
 
-async function addProduct(product) {
+// POST functions
+async function add(product) {
   const [id] = await db("products").insert(product, "id");
   return db("products")
     .where({ id })
     .first();
 }
 
+// PUT functions
+function update(changes, id) {
+  return db("products")
+    .update(changes)
+    .where({ id });
+}
+
+// DELETE functions
+function remove(id) {
+  return db("products")
+    .where({ id })
+    .del();
+}
+
+// miscellaneous functions
 function findLocation(location) {
   return db("locations")
     .select("id")
@@ -35,9 +52,18 @@ function findLocation(location) {
     .first();
 }
 
+function findCategory(category_name) {
+  return db("categories")
+    .where({ category_name })
+    .first();
+}
+
 module.exports = {
   getCategories,
   getProducts,
-  addProduct,
-  findLocation
+  add,
+  update,
+  remove,
+  findLocation,
+  findCategory
 };

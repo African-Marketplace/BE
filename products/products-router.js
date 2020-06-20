@@ -9,7 +9,7 @@ router.get("/cat", async (req, res) => {
     res.status(200).json(categories);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Could not retrieve categories" });
+    res.status(500).json({ message: "Could not get categories" });
   }
 });
 
@@ -23,13 +23,13 @@ router.get("/cat/:categoryID", async (req, res) => {
       res.status(200).json(products);
     } else {
       res.status(400).json({
-        message: "Specified category ID does not exist or contain any products"
+        message: "No products listed on specified category ID yet"
       });
     }
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Could not retrieve products of specified category ID"
+      message: "Could not get products"
     });
   }
 });
@@ -41,7 +41,7 @@ router.post("/cat/:categoryID", async (req, res) => {
   try {
     const location = await Helpers.findLocation(body.location);
 
-    const newProduct = await Helpers.addProduct({
+    const newProduct = await Helpers.add({
       product_name: body.product_name,
       description: body.description,
       price: body.price,
@@ -53,7 +53,7 @@ router.post("/cat/:categoryID", async (req, res) => {
     res.status(201).json(newProduct);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Could not add new product" });
+    res.status(500).json({ message: "Could not add product" });
   }
 });
 
@@ -72,9 +72,47 @@ router.get("/my", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-    res
-      .status(500)
-      .json({ message: "Could not retrieve products of specified user ID" });
+    res.status(500).json({ message: "Could not get my products" });
+  }
+});
+
+router.put("/my/:id", async (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+  const { product_name, description, price } = changes;
+
+  try {
+    const category = await Helpers.findCategory(changes.category);
+    const location = await Helpers.findLocation(changes.location);
+
+    const count = await Helpers.update(
+      {
+        category_id: category.id,
+        location_id: location.id,
+        product_name,
+        description,
+        price
+      },
+      id
+    );
+
+    res.status(200).json({ updatedCount: count });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Could not update product" });
+  }
+});
+
+router.delete("/my/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const count = await Helpers.remove(id);
+
+    res.status(200).json({ removedCount: count });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Could not remove product" });
   }
 });
 
