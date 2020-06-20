@@ -4,7 +4,7 @@ function getCategories() {
   return db("categories");
 }
 
-function getProducts(category_id) {
+function getProducts(filter) {
   return db("products as p")
     .join("categories as c", "c.id", "p.category_id")
     .join("locations as l", "l.id", "p.location_id")
@@ -18,7 +18,7 @@ function getProducts(category_id) {
       "l.location_name as location",
       "u.name as seller"
     )
-    .where({ category_id });
+    .where(filter);
 }
 
 async function addProduct(product) {
