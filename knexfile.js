@@ -1,4 +1,6 @@
 // Update with your config settings.
+const pgConnection =
+  process.env.DATABASE_URL || "postgresql://postgres@localhost/products";
 
 module.exports = {
   development: {
@@ -29,6 +31,20 @@ module.exports = {
       directory: "./data/migrations"
     },
     seeds: {
+      directory: "./data/seeds"
+    }
+  },
+  production: {
+    client: "pg",
+    connection: pgConnection,
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seed: {
       directory: "./data/seeds"
     }
   }
