@@ -28,9 +28,9 @@ describe("products-router.js", () => {
   }
 
   const data = {
-    product_name: "banana",
-    description: "ripe",
-    price: 3,
+    product_name: "Djellaba",
+    description: "African Outer Robe",
+    price: 32,
     location: "Nairobi"
   };
 
@@ -47,21 +47,20 @@ describe("products-router.js", () => {
     it("retrieves all products with specified category ID", async () => {
       const token = await registerToken();
       await request(server)
-        .post("/api/products/cat/4")
+        .post("/api/products/cat/1")
         .send(data)
         .set("authorization", token);
 
       const res = await request(server)
-        .get("/api/products/cat/4")
+        .get("/api/products/cat/1")
         .set("authorization", token);
-      // console.log("GET /cat/:categoryID", res.body);
       expect(res.status).toBe(200);
     });
 
     it("retrieves all products listed by user", async () => {
       const token = await registerToken();
       await request(server)
-        .post("/api/products/cat/4")
+        .post("/api/products/cat/1")
         .send(data)
         .set("authorization", token);
 
@@ -77,16 +76,16 @@ describe("products-router.js", () => {
     it("adds product and assigns specified category ID from params", async () => {
       const token = await registerToken();
       const res = await request(server)
-        .post("/api/products/cat/4")
+        .post("/api/products/cat/1")
         .send(data)
         .set("authorization", token);
 
       const result = {
         id: 1,
-        product_name: "banana",
-        description: "ripe",
-        price: 3,
-        category_id: 4,
+        product_name: "Djellaba",
+        description: "African Outer Robe",
+        price: 32,
+        category_id: 1,
         location_id: 5,
         seller_id: 1
       };
@@ -98,18 +97,18 @@ describe("products-router.js", () => {
     it("updates product with specified ID", async () => {
       const token = await registerToken();
       await request(server)
-        .post("/api/products/cat/4")
+        .post("/api/products/cat/1")
         .send(data)
         .set("authorization", token);
 
       const res = await request(server)
         .put("/api/products/my/1")
         .send({
-          product_name: "Banana",
-          description: "Ripe",
-          price: 3,
+          product_name: "Djellaba",
+          description: "Outer Robe",
+          price: 32,
           location: "Nairobi",
-          category: "Fruits"
+          category: "Clothing & Apparel"
         })
         .set("authorization", token);
 
@@ -121,7 +120,7 @@ describe("products-router.js", () => {
     it("should remove product with specified ID", async () => {
       const token = await registerToken();
       await request(server)
-        .post("/api/products/cat/4")
+        .post("/api/products/cat/1")
         .send(data)
         .set("authorization", token);
 
