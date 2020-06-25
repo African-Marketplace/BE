@@ -1,9 +1,9 @@
 exports.seed = function(knex) {
   return knex("categories").insert([
-    { category_name: "Animal Products" },
-    { category_name: "Beans" },
-    { category_name: "Cereals" },
-    { category_name: "Fruits" },
-    { category_name: "Vegetables" }
+    { category_name: "Clothing & Apparel" },
+    { category_name: "Authentic Artwork" },
+    { category_name: "Accessories" },
+    { category_name: "Food Items" },
+    { category_name: "Others" }
   ]);
 };
