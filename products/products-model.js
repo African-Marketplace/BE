@@ -12,7 +12,7 @@ function getProducts(filter) {
     .join("users as u", "u.id", "p.seller_id")
     .select(
       "p.id",
-      "p.product_name as product",
+      "p.product_name",
       "p.description",
       "p.price",
       "c.category_name as category",
