@@ -124,11 +124,11 @@ response data:
 [
   {
     "id": 1,
-    "category_name": "Animal Products"
+    "category_name": "Clothing & Apparel"
   },
   {
     "id": 2,
-    "category_name": "Beans"
+    "category_name": "Authentic Artwork"
   }
 ]
 ```
@@ -141,10 +141,10 @@ response data:
 [
   {
     "id": 1,
-    "product": "Eggs",
-    "description": "Organic",
-    "price": 3.2,
-    "category": "Animal Products",
+    "product_name": "Djellaba",
+    "description": "African Outer Robe",
+    "price": 32,
+    "category": "Clothing & Apparel",
     "location": "Nairobi",
     "seller": "person one"
   }
@@ -172,7 +172,7 @@ response data:
   "product_name": "Broccoli",
   "description": "Chopped",
   "price": 1.3,
-  "category_id": 5,
+  "category_id": 4,
   "location_id": 4,
   "seller_id": 1
 }
@@ -186,19 +186,19 @@ response data:
 [
   {
     "id": 1,
-    "product": "Eggs",
-    "description": "Organic",
-    "price": 3.2,
-    "category": "Animal Products",
+    "product_name": "Djellaba",
+    "description": "African Outer Robe",
+    "price": 32,
+    "category": "Clothing & Apparel",
     "location": "Nairobi",
     "seller": "john doe"
   },
   {
     "id": 6,
-    "product": "Broccoli",
+    "product_name": "Broccoli",
     "description": "Chopped",
     "price": 1.3,
-    "category": "Vegetables",
+    "category": "Food Items",
     "location": "Isiolo",
     "seller": "john doe"
   }
@@ -215,7 +215,7 @@ request data:
   "description": "Whole",
   "price": 10,
   "location": "Nairobi",
-  "category": "Vegetables"
+  "category": "Food Items"
 }
 ```
 
